@@ -47,9 +47,10 @@
         <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
         <!-- 扫描entity包 使用别名 -->
-        <!--会导致控制台出现乱码的情况-->
-        <!--MyBatis.jar源码org.apache.ibatis.io.DefaultVFS中的InputStreamReader没有传第二个参数导致-->
-        <!--在Sample_1中将采用其他方式-->
+        <!-- 会导致控制台出现乱码的情况 -->
+        <!--原因:MyBatis.jar源码org.apache.ibatis.io.DefaultVFS中的InputStreamReader没有传第二个参数导致-->
+        <!-- 如果不想在控制台中出现乱码,可以在mapper中引用entity时,使用全路径-->
+        <!--这也是使用别名的好处在于不用在mapper中使用entity的全路径,只使用类名即可-->
         <!--<property name="typeAliasesPackage" value="com.yuhs.entity"/>-->
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml" />
