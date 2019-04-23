@@ -1,7 +1,10 @@
 package com.yuhs.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuhs.dao.BookDao;
 import com.yuhs.entity.Book;
+import com.yuhs.page.entity.PageEntity;
 import com.yuhs.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,24 @@ public class BookServiceImpl implements BookService {
     // 注入Service依赖
     @Autowired
     private BookDao bookDao;
+
+    /**
+     * 查询图书信息
+     * @param pages
+     * @param rows
+     * @return
+     */
+    public PageEntity getPageList(int pages, int rows) {
+        PageHelper.startPage(pages,rows);
+        List<Book> list = bookDao.queryPage();
+        PageInfo<Book> bookPageInfo = new PageInfo<Book>(list);
+
+        //页面返回类型
+        PageEntity pageEntity = new PageEntity();
+        pageEntity.setTotal((int)bookPageInfo.getTotal());
+        pageEntity.setRows(list);
+        return  pageEntity;
+    }
 
     /**
      * 取得图书一览内容

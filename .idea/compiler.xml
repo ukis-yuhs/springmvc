@@ -24,11 +24,13 @@
         <processorPath useClasspath="true" />
         <module name="Sample_0" />
         <module name="Sample_1" />
+        <module name="Sample_common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Sample_0" target="1.5" />
       <module name="Sample_1" target="1.5" />
+      <module name="Sample_common" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

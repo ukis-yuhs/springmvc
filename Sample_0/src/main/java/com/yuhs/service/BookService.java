@@ -1,6 +1,7 @@
 package com.yuhs.service;
 
 import com.yuhs.entity.Book;
+import com.yuhs.page.entity.PageEntity;
 
 import java.util.List;
 
@@ -8,6 +9,14 @@ import java.util.List;
  * 业务接口：站在"使用者"角度设计接口 三个方面：方法定义粒度，参数，返回类型（return 类型/异常）
  */
 public interface BookService {
+
+    /**
+     * 查询图书信息
+     * @param pages
+     * @param rows
+     * @return
+     */
+    PageEntity getPageList(int pages, int rows);
 
     /**
      * 查询所有图书

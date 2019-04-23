@@ -7,7 +7,11 @@
 		"cd9fc97c-58c3-bbb3-495d-42fb6e28f810",
 		"beedf9bd-e69f-f76c-950d-fe23d8b5b8c5",
 		"76b4b8e8-ae5c-120e-81c1-6b72bbc29e29",
-		"c0706c4c-ab08-57ce-4bbe-f30092eac05e"
+		"c0706c4c-ab08-57ce-4bbe-f30092eac05e",
+		"e8fa2f64-bc19-7be1-e72f-3e408798a12c",
+		"cd6473fa-f377-99ef-5897-f9ffb86fea6e",
+		"3ba2f311-2d80-b88e-81f7-e2727735899d",
+		"82a74ea1-d3a9-522c-92e5-46d05436dd58"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -45,6 +49,35 @@
 			"rawModeData": "{\n    \"OrderCode\": \"\",\n    \"ShipperCode\": \"SF\",\n    \"LogisticCode\": \"118650888018\"\n}"
 		},
 		{
+			"id": "3ba2f311-2d80-b88e-81f7-e2727735899d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8000/file/download",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1555998748238,
+			"name": "8.文件下载",
+			"description": "",
+			"collectionId": "f3fccb0c-b44a-c7b6-ba74-721215c038df",
+			"responses": [],
+			"rawModeData": "{\n\t\"filename\":\"624a58fb-7735-4882-b52d-c915acbe170f_Read_20190213\"\n}"
+		},
+		{
 			"id": "76b4b8e8-ae5c-120e-81c1-6b72bbc29e29",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -74,6 +107,29 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"rawModeData": "{\n\t\"bookName\":\"测试登录8\",   \n\t\"author\":\"yuhs7\",      \n\t\"publisher\":\"清华大学出版社6\", \n\t\"publishDate\":\"2004-03-27 00:22:55\",\n\t\"price\":\"24\",\n\t\"bookType\":\"计算机3\",    \n\t\"storeLocation\":\"S12\",\n\t\"storeDate\":\"2018-10-24 13:30:21\",\n\t\"borrowedNumber\":\"10\",\n\t\"number\":\"12\"\n}"
+		},
+		{
+			"id": "82a74ea1-d3a9-522c-92e5-46d05436dd58",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8000/book/page/2/3",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f3fccb0c-b44a-c7b6-ba74-721215c038df",
+			"data": null,
+			"dataMode": "params",
+			"name": "9.页面信息",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1556002899571,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		},
 		{
 			"id": "beedf9bd-e69f-f76c-950d-fe23d8b5b8c5",
@@ -126,6 +182,29 @@
 			"responses": []
 		},
 		{
+			"id": "cd6473fa-f377-99ef-5897-f9ffb86fea6e",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8000/file/fileList",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f3fccb0c-b44a-c7b6-ba74-721215c038df",
+			"data": null,
+			"dataMode": "params",
+			"name": "7.文件列表",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1555990650427,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
 			"id": "cd9fc97c-58c3-bbb3-495d-42fb6e28f810",
 			"headers": "",
 			"headerData": [],
@@ -147,6 +226,42 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {}
+		},
+		{
+			"id": "e8fa2f64-bc19-7be1-e72f-3e408798a12c",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8000/file/fileUpload",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "file",
+					"value": "投标文件-技术部分(1).docx",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "file",
+					"value": "b_1.jpg",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1555990117095,
+			"name": "6.文件上传",
+			"description": "",
+			"collectionId": "f3fccb0c-b44a-c7b6-ba74-721215c038df",
+			"responses": []
 		}
 	]
 }

@@ -4,7 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuhs.dao.BookDao">
     <!-- 目的：为dao接口方法提供sql语句配置 -->
-    <!--全件检索-->
+    <!-- 指定页图书 -->
+    <select id="queryPage" resultType="com.yuhs.entity.Book">
+        <!-- 具体的sql -->
+        SELECT
+            book_number,
+            book_name,
+            author,
+            publisher,
+            publish_date,
+            price,
+            book_type,
+            store_location,
+            store_date,
+            borrowed_number,
+            number
+        FROM
+            book
+        ORDER BY
+            book_number
+    </select>
+    <!-- 查询指定区间图书 -->
     <select id="queryAll" resultType="com.yuhs.entity.Book">
         <!-- 具体的sql -->
         SELECT

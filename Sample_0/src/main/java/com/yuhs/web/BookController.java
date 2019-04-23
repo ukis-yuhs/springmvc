@@ -2,6 +2,7 @@ package com.yuhs.web;
 
 import com.yuhs.dto.ResponseJsonResult;
 import com.yuhs.entity.Book;
+import com.yuhs.page.entity.PageEntity;
 import com.yuhs.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,19 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    /**
+     * 取得指定页图书内容
+     * @param page 开始行
+     * @param rows 结束行
+     * @return
+     */
+    @RequestMapping(value = "/page/{page}/{rows}", method = RequestMethod.GET)
+    @ResponseBody
+    private PageEntity page(@PathVariable(value = "page")int page, @PathVariable(value = "rows")int rows) {
+        PageEntity pageEntity = bookService.getPageList(page,rows);
+        return pageEntity;
+    }
 
     /**
      * 取得图书一览内容

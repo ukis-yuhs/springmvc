@@ -4,6 +4,7 @@ import com.yuhs.BaseTest;
 import com.yuhs.entity.Book;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 
@@ -25,6 +26,14 @@ public class BookDaoTest extends BaseTest {
     @Test
     public void testQueryAll() throws Exception {
         List<Book> books = bookDao.queryAll(0, 4);
+        for (Book book : books) {
+            System.out.println(book);
+        }
+    }
+
+    @Test
+    public void testQueryPage() throws Exception {
+        List<Book> books = bookDao.queryPage();
         for (Book book : books) {
             System.out.println(book);
         }

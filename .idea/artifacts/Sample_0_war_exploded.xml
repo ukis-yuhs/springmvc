@@ -7,6 +7,9 @@
           <element id="module-output" name="Sample_0" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="Sample_common-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="Sample_common" />
+          </element>
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.1" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.1" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.6" />
