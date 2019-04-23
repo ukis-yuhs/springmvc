@@ -1,5 +1,5 @@
 /**
- * 实体类(与数据库的表相对应,也可以称做pojo)
+ * 数据传输层(service层与web层之间传输)
  * Created by yuhaisheng on 2019/4/19.
  */
 package com.yuhs.dto;

@@ -5,7 +5,7 @@
 <mapper namespace="com.yuhs.dao.BookDao">
     <!-- 目的：为dao接口方法提供sql语句配置 -->
     <!--全件检索-->
-    <select id="queryAll" resultType="Book">
+    <select id="queryAll" resultType="com.yuhs.entity.Book">
         <!-- 具体的sql -->
         SELECT
             book_number,
@@ -26,7 +26,7 @@
         LIMIT #{offset}, #{limit}
     </select>
     <!--指定检索-->
-    <select id="queryById" resultType="Book" parameterType="long">
+    <select id="queryById" resultType="com.yuhs.entity.Book" parameterType="long">
         SELECT
             book_number,
             book_name,

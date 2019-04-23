@@ -19,8 +19,6 @@
         <mybatis.version>3.2.8</mybatis.version>
         <aspectj.version> 1.6.11</aspectj.version >
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
-        <standard.version>1.1.2</standard.version><!--非必须酌情-->
-        <jstl.version>1.2</jstl.version><!--非必须酌情-->
         <jackson-databind.version>2.9.8</jackson-databind.version>
         <servlet-api.version>2.5</servlet-api.version>
         <spring.version>4.3.18.RELEASE</spring.version>
@@ -81,16 +79,6 @@
         </dependency>
 
         <!-- 3.Servlet web -->
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>${standard.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
