@@ -1,0 +1,79 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" metadata-complete="true">
+    <!-- 如果是用mvn命令生成的xml，需要修改servlet版本为3.1 -->
+    <!-- 配置springMVC需要加载的配置文件
+            applicationContext-dao.xml,
+            applicationContext-service.xml,
+            applicationContext-tx.xml,
+            Mybatis - > spring -> springmvc
+         -->
+    <!-- 加载Spring容器 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext-*.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 解决post乱码 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 配置DispatcherServlet前端控制器 -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/springmvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <!-- 默认匹配所有的请求 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--druid 监控 -->
+    <!--http://localhost:8000/druid/index.html-->
+    <!-- 配置 Druid 监控信息显示页面 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <!-- 允许清空统计数据 -->
+            <param-name>resetEnable</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <!-- 用户名 -->
+            <param-name>loginUsername</param-name>
+            <param-value>sample</param-value>
+        </init-param>
+        <init-param>
+            <!-- 密码 -->
+            <param-name>loginPassword</param-name>
+            <param-value>sample</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

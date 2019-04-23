@@ -5,13 +5,14 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/Sample_0" />
+    <file type="web" url="file://$PROJECT_DIR$/Sample_1" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Sample_0/pom.xml" />
-        <option value="$PROJECT_DIR$/Sample_1/pom.xml" />
         <option value="$PROJECT_DIR$/Sample_common/pom.xml" />
+        <option value="$PROJECT_DIR$/Sample_1/pom.xml" />
       </list>
     </option>
   </component>
