@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class PageEntity {
 
+    //总行数
     private Integer total;
     //详细信息
     private List<?> rows;

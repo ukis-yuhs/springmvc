@@ -1,4 +1,4 @@
-package com.yuhs.file.utils;
+package com.yuhs.utils.file;
 
 import java.io.FileInputStream;
 import java.io.IOException;

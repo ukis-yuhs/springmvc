@@ -1,5 +1,6 @@
-package com.yuhs.file.utils;
+package com.yuhs.utlis.file;
 
+import com.yuhs.utils.file.FileUtils;
 import org.junit.Test;
 
 /**

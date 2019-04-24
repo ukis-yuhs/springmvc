@@ -10,6 +10,8 @@
           <element id="archive" name="Sample_common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="Sample_common" />
           </element>
+          <element id="library" level="project" name="Maven: com.belerweb:pinyin4j:2.5.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.1" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.1" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.6" />
