@@ -23,16 +23,6 @@
      -->
     <mvc:default-servlet-handler/>
 
-    <!--配置上传文件大小限制的拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/file/fileUpload"/>
-            <bean class="com.yuhs.interceptor.FileUploadInterceptor">
-                <property name="maxSize" value="31457280"/><!--30M-->
-            </bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
-
     <!-- 3.freemarker配置在前，当请求发现/WEB-INF/ftl/没有当时候，就会去/WEB-INF/jsp/查找 -->
     <!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
         <!--<property name="templateLoaderPath" value="/WEB-INF/ftl/"/>-->
@@ -61,4 +51,16 @@
     <context:property-placeholder location="classpath:properties/resource.properties" />
     <!-- 6.文件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--配置上传文件大小限制的拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/file/fileUpload"/>
+            <bean class="com.yuhs.interceptor.FileUploadInterceptor">
+                <property name="maxSize" value="31457280"/><!--30M-->
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--Shiro-->
+
 </beans>

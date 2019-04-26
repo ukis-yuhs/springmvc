@@ -46,14 +46,22 @@
     使用[/*]匹配所有请求，保证所有的可控请求都经过Shiro的过滤
     通常会将此filter-mapping放置到最前面（即其他filter-mapping前面），以保证它是过滤器链中第一个起作用的
     -->
+    <!-- shiro过滤器，DelegatingFilterProxy通过代理模式将spring容器中到bean和filter关联起来 -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         <async-supported>true</async-supported>
         <init-param>
-            <!-- 缺省为false，表示由SpringApplicationContext管理生命周期，置为true则表示由ServletContainer管理 -->
+            <!-- 缺省为false，表示由SpringApplicationContext管理生命周期，
+            置为true则表示由ServletContainer管理
+            -->
             <param-name>targetFilterLifecycle</param-name>
             <param-value>true</param-value>
+        </init-param>
+        <!-- 设置spring容器filter到bean id，如果不设置则找与filter-name一致到bean -->
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>shiroFilter</param-value>
         </init-param>
     </filter>
     <filter-mapping>
