@@ -4,6 +4,7 @@ import com.yuhs.dto.ResponseJsonResult;
 import com.yuhs.entity.Book;
 import com.yuhs.page.entity.PageEntity;
 import com.yuhs.service.BookService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,10 @@ public class BookController {
      * @param rows 结束行
      * @return
      */
+    @RequiresPermissions("book:query") //执行page方法需要[book:query]权限
     @RequestMapping(value = "/page/{page}/{rows}", method = RequestMethod.GET)
     @ResponseBody
-    private PageEntity page(@PathVariable(value = "page")int page, @PathVariable(value = "rows")int rows) {
+    public PageEntity page(@PathVariable(value = "page")int page, @PathVariable(value = "rows")int rows) {
         PageEntity pageEntity = bookService.getPageList(page,rows);
         return pageEntity;
     }
@@ -42,7 +44,7 @@ public class BookController {
      */
     @RequestMapping(value = "/list/{startIndex}/{endIndex}", method = RequestMethod.GET)
     @ResponseBody
-    private ResponseJsonResult list(@PathVariable(value = "startIndex") Integer startIndex,
+    public ResponseJsonResult list(@PathVariable(value = "startIndex") Integer startIndex,
                                     @PathVariable(value = "endIndex") Integer endIndex) {
         ResponseJsonResult responseJsonResult = new ResponseJsonResult();
         List<Book> list = bookService.getList(startIndex,endIndex);
@@ -55,9 +57,10 @@ public class BookController {
      * @param bookId 图书号
      * @return
      */
+    @RequiresPermissions("book:query") //执行page方法需要[book:query]权限
     @RequestMapping(value = "/detail/{bookId}", method = RequestMethod.GET)
     @ResponseBody
-    private ResponseJsonResult detail(@PathVariable("bookId") Long bookId) {
+    public ResponseJsonResult detail(@PathVariable("bookId") Long bookId) {
         ResponseJsonResult responseJsonResult = new ResponseJsonResult();
         Book book = bookService.getById(bookId);
         if (book == null) {
@@ -73,9 +76,9 @@ public class BookController {
      * @param book
      * @return
      */
-    @RequestMapping(value = "insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
-    private ResponseJsonResult insertBook(@RequestBody Book book) {
+    public ResponseJsonResult insertBook(@RequestBody Book book) {
         ResponseJsonResult responseJsonResult = new ResponseJsonResult();
         bookService.insertBook(book);
         return responseJsonResult;
@@ -89,7 +92,7 @@ public class BookController {
      */
     @RequestMapping(value = "/update/{bookId}", method = RequestMethod.POST)
     @ResponseBody
-    private ResponseJsonResult updateBook(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
+    public ResponseJsonResult updateBook(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
         ResponseJsonResult responseJsonResult = new ResponseJsonResult();
         book.setBookNumber(bookId);
         bookService.updateBook(book);
@@ -97,15 +100,18 @@ public class BookController {
     }
 
     /**
-     * 图书信息更新
+     * 图书信息删除
+     * 开启shiro注解后，由于使用类代理方式（cglib）所以，方法的修饰符不能使用private
+     * 可以是使用[public]、[proctected]、[default]
      * @param bookId
      * @return
      */
+    @RequiresPermissions("book:delete") //执行deleteBook方法需要[book:delete]权限
     @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.POST)
     @ResponseBody
-    private ResponseJsonResult deleteBook(@PathVariable("bookId") Long bookId) {
+    protected ResponseJsonResult deleteBook(@PathVariable("bookId") Long bookId) {
         ResponseJsonResult responseJsonResult = new ResponseJsonResult();
-        bookService.deleteBook(bookId);
+        //bookService.deleteBook(bookId);
         return responseJsonResult;
     }
 

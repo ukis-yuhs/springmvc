@@ -7,6 +7,7 @@
             applicationContext-dao.xml,
             applicationContext-service.xml,
             applicationContext-tx.xml,
+            applicationContext-shiro.xml,
             Mybatis - > spring -> springmvc
          -->
     <!-- Spring -->
@@ -111,4 +112,8 @@
         <servlet-name>DruidStatView</servlet-name>
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

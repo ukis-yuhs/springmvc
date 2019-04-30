@@ -16,14 +16,14 @@ public interface BookService {
      * @param rows
      * @return
      */
-    PageEntity getPageList(int pages, int rows);
+    public PageEntity getPageList(int pages, int rows);
 
     /**
      * 查询所有图书
      *
      * @return
      */
-    List<Book> getList(Integer startIndex,Integer endIndex);
+    public List<Book> getList(Integer startIndex,Integer endIndex);
 
     /**
      * 查询一本图书
@@ -31,24 +31,24 @@ public interface BookService {
      * @param bookId
      * @return
      */
-    Book getById(long bookId);
+    public Book getById(long bookId);
 
     /**
      * 图书登录
      * @param book
      */
-    void insertBook(Book book);
+    public void insertBook(Book book);
 
     /**
      * 图书更新
      * @param book
      */
-    void updateBook(Book book);
+    public void updateBook(Book book);
 
     /**
      * 图书删除
      * @param bookId
      */
-    void deleteBook(long bookId);
+    public void deleteBook(long bookId);
 
 }

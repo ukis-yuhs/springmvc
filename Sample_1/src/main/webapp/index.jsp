@@ -1,0 +1,1 @@
+<script language="javascript">location.href="${pageContext.request.contextPath}/page/index"</script>

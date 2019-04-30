@@ -18,7 +18,7 @@
                   sys_role_id IN (SELECT
                           sys_role_id
                       FROM
-                          sys_user
+                          sys_user_role
                       WHERE
                           sys_user_id = #{id}))
   </select>
@@ -38,7 +38,7 @@
                   sys_role_id IN (SELECT
                           sys_role_id
                       FROM
-                          sys_user
+                          sys_user_role
                       WHERE
                           sys_user_id = #{id}))
   </select>

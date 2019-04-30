@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!-- 配置SpringMVC -->
     <!-- 1.开启SpringMVC注解模式 -->
     <!-- 简化配置：
@@ -41,11 +41,10 @@
     </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.yuhs.web" />
+    <context:component-scan base-package="com.yuhs"/>
 
     <!-- 5.静态资源  -->
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
 
     <!--读入属性文件,因使用场所不同,需要在父容器中读取-->
     <context:property-placeholder location="classpath:properties/resource.properties" />
@@ -62,5 +61,14 @@
     </mvc:interceptors>
 
     <!--Shiro-->
+    <!--开启aop，基于类代理-->
+    <!--开启基于类的代理后，Controller的方法修饰符不能是private的，如果是private修饰符Service将不被注入-->
+    <aop:config proxy-target-class="true"></aop:config>
 
+    <!--开启shiro注解支持-->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!--自定义异常处理anon无权限处理-->
+    <bean id="exceptionResolver" class="com.yuhs.exception.CustomExceptionResolver"/>
 </beans>

@@ -80,7 +80,7 @@ public class SysServiceImpl implements SysService {
         SysUserExample.Criteria criteria = sysUserExample.createCriteria();
         criteria.andUsercodeEqualTo(userCode);
         List<SysUser> sysUsers = sysUserMapper.selectByExample(sysUserExample);
-        if (sysUsers != null && sysUsers.size() == 0) {
+        if (sysUsers != null && sysUsers.size() != 0) {
             return sysUsers.get(0);
         } else {
             return null;
