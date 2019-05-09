@@ -15,6 +15,13 @@
         <junit.version>4.12</junit.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
+        <poi.version>4.0.1</poi.version>
+        <org.apache.poi.xwpf.converter.xhtml.version>1.0.5</org.apache.poi.xwpf.converter.xhtml.version>
+        <poi-scratchpad.version>3.8</poi-scratchpad.version>
+        <commons-net.version>3.4</commons-net.version>
+        <httpclient.version>4.5.5</httpclient.version>
+        <commons-lang.vresion>2.6</commons-lang.vresion>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <dependencies>
@@ -36,5 +43,42 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
+        <!--poi依赖 doc<->html-->
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>
+            <version>${org.apache.poi.xwpf.converter.xhtml.version}</version>
+        </dependency>
+        <!--poi依赖 docx<->html-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>${poi-scratchpad.version}</version>
+        </dependency>
+        <!--ftputils-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons-net.version}</version>
+        </dependency>
+        <!-- httputils -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.vresion}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <!-- 定义作用域(编译) -->
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 </project>

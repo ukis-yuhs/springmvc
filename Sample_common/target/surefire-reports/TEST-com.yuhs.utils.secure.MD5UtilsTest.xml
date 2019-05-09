@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.yuhs.utils.secure.MD5UtilsTest" time="0.056" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.yuhs.utils.secure.MD5UtilsTest" time="0.024" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2016.1.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -12,7 +12,7 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7533"/>
+    <property name="idea.launcher.port" value="7535"/>
     <property name="user.country" value="CN"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
@@ -61,10 +61,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum1" time="0"/>
+  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum1" time="0.001"/>
   <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum2" time="0.003"/>
-  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum3" time="0"/>
+  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum3" time="0.001"/>
   <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum4" time="0"/>
   <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testGetMd5Sum5" time="0"/>
-  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testVerify" time="0"/>
+  <testcase classname="com.yuhs.utils.secure.MD5UtilsTest" name="testVerify" time="0.001"/>
 </testsuite>
