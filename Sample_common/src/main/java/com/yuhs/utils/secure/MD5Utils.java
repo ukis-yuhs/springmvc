@@ -44,7 +44,7 @@ public class MD5Utils {
         // for (int i = 0; i < 16; ++i) {
         // char[] ob = new char[] { Digit[md5sum[i] >> 4 & 15], Digit[md5sum[i]
         // & 15] };
-        // String s = new String(ob);
+        // string s = new string(ob);
         // sb.append(s);
         // }
         // 算法2
@@ -71,7 +71,7 @@ public class MD5Utils {
     public static String getMd5Sum(String inputStr) {
         // 不允许为null
         if (inputStr == null) {
-            throw new IllegalArgumentException("Input String Is Null !");
+            throw new IllegalArgumentException("Input string Is Null !");
         }
         // 获取字符串字节流
         byte[] inputStrByte = null;

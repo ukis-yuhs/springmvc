@@ -1,5 +1,7 @@
 package com.yuhs.utils.file.read;
 
+import org.apache.http.util.ByteArrayBuffer;
+
 import java.io.*;
 
 /**
@@ -7,6 +9,96 @@ import java.io.*;
  */
 public class ReadFileUtils {
 
+    /**
+     * 获取文件输入流
+     * */
+    public static InputStream readFileToInputStream(String path) {
+        InputStream inputStream = null;
+        try {
+            File file = new File(path);
+            inputStream = new FileInputStream(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
+
+    /**
+     * 读取文件字节数组
+     * */
+    public static byte[] readFileToBytes(String path) {
+        InputStream inputStream = readFileToInputStream(path);
+        if (inputStream != null) {
+            byte[] data = new byte[1024];
+            ByteArrayBuffer buffer = new ByteArrayBuffer(1024);
+            int n = 0;
+            try {
+                while ((n = inputStream.read(data)) != -1) {
+                    buffer.append(data, 0, n);
+                }
+                data = null;
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return buffer.toByteArray();
+        }
+        return null;
+    }
+
+    /**
+     * 读取文件内容
+     * */
+    public static String readFileToString(String path) {
+        byte[] dataBytes = readFileToBytes(path);
+        if (dataBytes != null) {
+            return new String(dataBytes);
+        }
+        return null;
+    }
+
+
+//独立方法完成文件读取 开始
+    /**
+     * 以行为单位读取文件，常用于读面向行的格式化文件
+     * @param path
+     * @return
+     */
+    public static String readFileByLines(String path) {
+        File file = new File(path);
+        if (!file.exists() || file.isDirectory()) {
+            return null;
+        }
+        StringBuffer buffer = new StringBuffer();
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String tempString = null;
+            while ((tempString = bufferedReader.readLine()) != null) {
+                buffer.append(tempString).append(System.getProperty("line.separator"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return buffer.toString();
+    }
     /**
      * 读取本地文件(按行读取)
      * @param filePath
@@ -57,6 +149,33 @@ public class ReadFileUtils {
     }
 
     /**
+     * 获得指定文件的byte数组, 一次读取文件内容
+     * @param filePath
+     * @return
+     */
+    public static byte[] readBytesFromFile(String filePath) {
+        FileInputStream fileInputStream = null;
+        byte[] bytesArray = null;
+        try {
+            File file = new File(filePath);
+            bytesArray = new byte[(int) file.length()];
+            //read file into bytes[]
+            fileInputStream = new FileInputStream(file);
+            fileInputStream.read(bytesArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bytesArray;
+    }
+    /**
      * 获得指定文件的byte数组
      * @param filePath
      * @return
@@ -93,8 +212,7 @@ public class ReadFileUtils {
                 }
             }
         }
-
         return buffer;
     }
-
+//独立方法完成文件读取 结束
 }

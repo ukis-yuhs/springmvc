@@ -47,7 +47,6 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testExistHttpPath() {
-        //String image ="http://info-database.csdn.net/Upload/2010-10-30/735-60sap1030.jpg";
         String image ="http://xxxx";
         Boolean boolen = ReadNetFileUtils.existHttpPath(image);
         System.err.println(boolen);

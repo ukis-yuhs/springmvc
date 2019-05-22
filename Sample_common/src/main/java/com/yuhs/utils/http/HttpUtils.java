@@ -99,7 +99,7 @@ public class HttpUtils {
     }
 
     /**
-     * Post String
+     * Post string
      *
      * @param host    主机
      * @param path    路径
@@ -161,7 +161,7 @@ public class HttpUtils {
     }
 
     /**
-     * Put String
+     * Put string
      *
      * @param host    主机
      * @param path    路径

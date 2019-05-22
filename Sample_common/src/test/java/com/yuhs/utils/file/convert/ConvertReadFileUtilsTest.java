@@ -8,8 +8,10 @@ import java.net.URL;
  * Created by yuhaisheng on 2019/5/8.
  */
 public class ConvertReadFileUtilsTest {
+
     /**
      * 测试使用jar包版本是否相同
+     *
      */
     @Test
     public void testPoiVersion() {
@@ -58,7 +60,6 @@ public class ConvertReadFileUtilsTest {
         String htmlString = ConvertFileUtils.docxToHtmlForUEditorString(docxFileName);
         System.err.println(htmlString);
     }
-
 
     /**
      * 将doc文件保存为html文件
