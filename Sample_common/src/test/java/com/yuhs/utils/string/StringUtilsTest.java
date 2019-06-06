@@ -71,4 +71,41 @@ public class StringUtilsTest {
         System.out.println(StringUtils.leftPadForByte("ABC",12,48));
         System.out.println(StringUtils.leftPadForByte("ABC",12,64));
     }
+
+    /**
+     * 将蛇型命名转换为驼型命名
+     */
+    @Test
+    public void testUnderlineToJavaString() {
+        System.out.println(StringUtils.underlineToJavaString("first_second_thrid"));
+    }
+
+    /**
+     * 将驼型转换为蛇型
+     */
+    @Test
+    public void testjavaStringToUnderline() {
+        System.out.println(StringUtils.javaStringToUnderline("abcDefGhij"));
+    }
+
+    /**
+     * 全角转半角
+     */
+    @Test
+    public void testChangeToHalf() {
+        System.out.println(StringUtils.changeToHalf("１２３ＡＢＣａｂｃ，。／"));
+    }
+
+    /**
+     * 半角转全角
+     */
+    @Test
+    public void testChangeToFull() {
+        System.out.println(StringUtils.changeToFull("123ABCabc,./"));
+    }
+
+//    @Test
+//    public void test() {
+//        System.out.println();
+//    }
 }
