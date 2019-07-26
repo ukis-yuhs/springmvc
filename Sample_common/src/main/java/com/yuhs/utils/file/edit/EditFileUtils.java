@@ -12,8 +12,9 @@ public class EditFileUtils {
 
     /**
      * 根据给出路径自动选择删除文件或整个文件夹
+     *
      * @param path :文件或文件夹路径
-     * */
+     */
     public static void deleteFiles(String path) {
         File file = new File(path);
         if (!file.exists()) {
@@ -35,9 +36,10 @@ public class EditFileUtils {
 
     /**
      * 根据给出路径自动选择复制文件或整个文件夹
-     * @param src :源文件或文件夹路径
+     *
+     * @param src  :源文件或文件夹路径
      * @param dest :目标文件或文件夹路径
-     * */
+     */
     public static void copyFiles(String src, String dest) {
         File srcFile = new File(src);
         if (srcFile.exists()) {
@@ -60,7 +62,7 @@ public class EditFileUtils {
 
     /**
      * 将文件输入流写入文件
-     * */
+     */
     public static boolean writeFileFromInputStream(InputStream inStream, String path) {
         boolean result = true;
         try {
@@ -81,6 +83,7 @@ public class EditFileUtils {
 
     /**
      * 向文件中写入内容
+     *
      * @param filePath
      * @param filecontent
      * @return
@@ -101,6 +104,7 @@ public class EditFileUtils {
 
     /**
      * 向文件中写入内容
+     *
      * @param filepath
      * @param newContent
      * @return
@@ -162,8 +166,9 @@ public class EditFileUtils {
 
     /**
      * 创建文件，若文件夹不存在则自动创建文件夹，若文件存在则删除旧文件
+     *
      * @param path :待创建文件路径
-     * */
+     */
     public static File createFile(String path) {
         File file = new File(path);
         try {
@@ -182,12 +187,13 @@ public class EditFileUtils {
 
     /**
      * 创建文件，若文件夹不存在则自动创建文件夹，若文件存在则重命名
+     *
      * @param path
      * @return
      */
     public static File createFileGenerateFileName(String path) {
         File file = new File(path);
-        String directory = file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf(System.getProperty("file.separator")));
+        String directory = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(System.getProperty("file.separator")));
         if (file.exists()) {
             String fileName = file.getName();
             String name = "";
@@ -216,6 +222,7 @@ public class EditFileUtils {
 
     /**
      * 获取文件名
+     *
      * @param filename
      * @return
      */
@@ -229,6 +236,7 @@ public class EditFileUtils {
 
     /**
      * 根据byte数组，生成文件
+     *
      * @param bfile
      * @param filePath
      * @param fileName
@@ -267,5 +275,30 @@ public class EditFileUtils {
         }
     }
 
+    /**
+     * 一行一行的写入文件
+     *
+     * @param file        文件
+     * @param lineContent 行内容
+     */
+    public static void writeFile(File file, String lineContent) {
+        BufferedWriter bufferedWriter = null;
+        try {
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"), 1024);
+            bufferedWriter.write(lineContent);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 }

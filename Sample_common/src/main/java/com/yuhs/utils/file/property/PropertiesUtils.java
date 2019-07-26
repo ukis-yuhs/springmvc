@@ -27,13 +27,14 @@ public class PropertiesUtils {
      * @throws IOException
      */
     public PropertiesUtils() throws IOException {
-        String propertiesUtilPath = PropertiesUtils.class.getResource("PropertiesUtil.class").getPath();
+        String propertiesUtilPath = PropertiesUtils.class.getResource("PropertiesUtils.class").getPath();
         //截取路径到classes
         String classPath = propertiesUtilPath.substring(0, propertiesUtilPath.indexOf("classes/")) + "classes/";
-        configPath = classPath.substring(1) + "config.properties";
+        configPath = classPath.substring(0) + "config.properties";
         props = new Properties();
         InputStream in = null;
         try {
+            System.out.println(configPath);
             in = new BufferedInputStream(new FileInputStream(configPath));
             props.load(in);
             propertiesUtilPath = null;

@@ -11,11 +11,19 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by yuhaisheng on 2019/5/21.
  */
 public class HtmlUtils {
+
+    /**
+     * 链接正则表达式
+     */
+    private static final String REGEX_URL = "(http:|https:)//[^[A-Za-z0-9\\._\\?%&+\\-=/#]]*";
+
     /**
      * HTML字符转义
      * 对输入参数中的敏感字符进行过滤替换,防止用户利用JavaScript等方式输入恶意代码
@@ -85,5 +93,24 @@ public class HtmlUtils {
                 }
             }
         }
+    }
+
+    /**
+     * 将字符串中的带有url链接转为可以点击的链接
+     * @param str
+     * @return
+     */
+    public static String parseUrl(String str) {
+        Pattern pattern = Pattern.compile(REGEX_URL);
+        Matcher matcher = pattern.matcher(str);
+        StringBuffer result = new StringBuffer();
+        while (matcher.find()) {
+            StringBuilder replace = new StringBuilder();
+            replace.append("<a href=\"").append(matcher.group());
+            replace.append("\" target=\"_blank\">").append(matcher.group()).append("</a>");
+            matcher.appendReplacement(result, replace.toString());
+        }
+        matcher.appendTail(result);
+        return result.toString();
     }
 }

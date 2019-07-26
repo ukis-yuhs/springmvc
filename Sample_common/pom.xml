@@ -27,6 +27,13 @@
         <servlet-api.version>2.5</servlet-api.version>
         <spring-beans.version>4.3.14.RELEASE</spring-beans.version>
         <commons-compress.version>1.14</commons-compress.version>
+        <ganymed-ssh2.version>build210</ganymed-ssh2.version>
+        <mail.version>1.4.7</mail.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <commons-dbutils.version>1.6</commons-dbutils.version>
+        <commons-pool.version>1.6</commons-pool.version>
+        <itext.version>2.1.7</itext.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
     </properties>
 
     <dependencies>
@@ -119,7 +126,69 @@
         <dependency>
             <groupId>ch.ethz.ganymed</groupId>
             <artifactId>ganymed-ssh2</artifactId>
-            <version>build210</version>
+            <version>${ganymed-ssh2.version}</version>
         </dependency>
+        <!--mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
+        <!--Springmvc mail-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.3.9.RELEASE</version>
+        </dependency>
+        <!--dbutils-->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>${commons-dbutils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>${commons-pool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons-collections.version}</version>
+        </dependency>
+        <!--pdf-->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>${itext.version}</version>
+        </dependency>
+        <!--https://www.hutool.cn/-->
+        <!--工具类集合-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.5.15</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--编译时跳过test文件夹-->
+            <!--http://maven.apache.org/surefire/maven-surefire-plugin/examples/skipping-tests.html-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

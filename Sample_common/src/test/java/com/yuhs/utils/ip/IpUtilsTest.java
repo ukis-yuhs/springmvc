@@ -2,6 +2,8 @@ package com.yuhs.utils.ip;
 
 import org.junit.Test;
 
+import java.net.UnknownHostException;
+
 /**
  * Created by yuhaisheng on 2019/6/2.
  */
@@ -20,5 +22,17 @@ public class IpUtilsTest {
     public void test() {
         String ip =  IpUtils.decodeIp(3232235629l);
         System.out.println(ip);
+    }
+
+    /**
+     * 获取本地Ip
+     */
+    @Test
+    public void testGetLocalIP() {
+        try {
+            System.out.println(IpUtils.getLocalIP());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 }

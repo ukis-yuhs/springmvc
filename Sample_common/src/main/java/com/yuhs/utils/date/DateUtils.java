@@ -7,9 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 /**
  * Created by yuhaisheng on 2019/5/21.
@@ -113,6 +111,7 @@ public class DateUtils {
 
     /**
      * 将字符串格式化Date
+     *
      * @param sDate
      * @param format
      * @return
@@ -145,6 +144,7 @@ public class DateUtils {
 
     /**
      * 计算当前时间几小时之后的时间
+     *
      * @param date
      * @param hours
      * @return
@@ -155,6 +155,7 @@ public class DateUtils {
 
     /**
      * 计算当前时间几分钟之后的时间
+     *
      * @param date
      * @param minutes
      * @return
@@ -165,6 +166,7 @@ public class DateUtils {
 
     /**
      * 计算当前时间几秒之后的时间
+     *
      * @param date
      * @param seconde
      * @return
@@ -175,6 +177,7 @@ public class DateUtils {
 
     /**
      * 判断输入的字符串是否为合法的小时
+     *
      * @param target
      * @return
      */
@@ -191,6 +194,7 @@ public class DateUtils {
 
     /**
      * 判断输入的字符串是否为合法的分或秒
+     *
      * @param target
      * @return
      */
@@ -207,6 +211,7 @@ public class DateUtils {
 
     /**
      * 获取指定天数的后的几天
+     *
      * @param date
      * @param days
      * @return
@@ -217,6 +222,7 @@ public class DateUtils {
 
     /**
      * 获取当前日期后指定天数的日期
+     *
      * @param days
      * @return
      */
@@ -226,6 +232,7 @@ public class DateUtils {
 
     /**
      * 获取指定日期明天的日期
+     *
      * @param sDate
      * @return
      * @throws ParseException
@@ -239,6 +246,7 @@ public class DateUtils {
 
     /**
      * 格式日期
+     *
      * @param date
      * @param dateFormat
      * @return
@@ -250,6 +258,7 @@ public class DateUtils {
 
         return dateFormat.format(date);
     }
+
     /**
      * 获取前一天日期(yyyyMMdd)
      *
@@ -263,6 +272,7 @@ public class DateUtils {
 
     /**
      * 获取前一天日期
+     *
      * @param sDate
      * @return
      * @throws ParseException
@@ -271,11 +281,12 @@ public class DateUtils {
         Date aDate = parseDateNoTime(sDate, format);
         aDate = addSeconds(aDate, -ONE_DAY_SECONDS);
         DateFormat df = getNewDateFormat(format);
-        return getDateString(aDate,df);
+        return getDateString(aDate, df);
     }
 
     /**
      * 获取指定日期的前n天
+     *
      * @param dateString
      * @param format
      * @param days
@@ -292,6 +303,7 @@ public class DateUtils {
         date = new Date(date.getTime() - (ONE_DAY_MILL_SECONDS * days));
         return df.format(date);
     }
+
     /**
      * 获取当前的日期(yyyyMMdd)
      *
@@ -300,8 +312,10 @@ public class DateUtils {
     public static String getCurrentDate() {
         return new SimpleDateFormat(shortFormat).format(new Date());
     }
+
     /**
      * 获取当前天的前n天
+     *
      * @param days
      * @return
      */
@@ -310,6 +324,7 @@ public class DateUtils {
         DateFormat dateFormat = getNewDateFormat(shortFormat);
         return getDateString(date, dateFormat);
     }
+
     /**
      * 获取当前的时间(yyyyMMddHHmmss)
      *
@@ -321,6 +336,7 @@ public class DateUtils {
 
     /**
      * 取得两个日期间隔毫秒数（日期1-日期2）
+     *
      * @param firstDate
      * @param secondDate
      * @return 间隔毫秒数
@@ -335,6 +351,7 @@ public class DateUtils {
 
     /**
      * 取得两个日期间隔秒数（日期1-日期2）
+     *
      * @param firstDate
      * @param secondDate
      * @return
@@ -349,6 +366,7 @@ public class DateUtils {
 
     /**
      * 取得两个日期间隔分钟数（日期1-日期2）
+     *
      * @param firstDate
      * @param secondDate
      * @return
@@ -363,6 +381,7 @@ public class DateUtils {
 
     /**
      * 取得两个日期间隔天数（日期1-日期2）
+     *
      * @param firstDate
      * @param secondDate
      * @return
@@ -377,6 +396,7 @@ public class DateUtils {
 
     /**
      * 判断日期是否有效
+     *
      * @param strDate
      * @param format
      * @return
@@ -402,6 +422,7 @@ public class DateUtils {
 
     /**
      * 取得当前月的第一天，指定format
+     *
      * @param format
      * @return
      */
@@ -416,6 +437,7 @@ public class DateUtils {
 
     /**
      * 日期格式转换
+     *
      * @param dateString
      * @param formatIn
      * @param formatOut
@@ -432,6 +454,7 @@ public class DateUtils {
 
     /**
      * 比较两个日期大小
+     *
      * @param date1
      * @param date2
      * @param format
@@ -497,6 +520,7 @@ public class DateUtils {
 
     /**
      * 检查指定的时间与当前时间的间隔是否大于interval
+     *
      * @param time
      * @param interval
      * @return
@@ -510,6 +534,7 @@ public class DateUtils {
 
     /**
      * 当前时间与指定时间比，还有几天
+     *
      * @param target
      * @return
      */
@@ -525,6 +550,7 @@ public class DateUtils {
      * 指定时间据当前时间已过去多少天
      * 不足的一天的天数不算入结果
      * 如 2.99天--->2天
+     *
      * @param target
      * @return
      */
@@ -607,6 +633,7 @@ public class DateUtils {
 
     /**
      * 获取前一天日期
+     *
      * @param date
      * @return
      */
@@ -620,6 +647,7 @@ public class DateUtils {
 
     /**
      * 获取下一天
+     *
      * @param date
      * @return
      */
@@ -629,5 +657,73 @@ public class DateUtils {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         date = calendar.getTime();
         return date;
+    }
+
+    /**
+     * 获取指定开始日期到结束日期的周信息
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return
+     * @throws ParseException
+     */
+    public static Map<Integer, List<Date>> getWeekDiff(Date startDate, Date endDate) throws ParseException {
+        Calendar startCalendar = new GregorianCalendar();
+        Calendar endCalendar = new GregorianCalendar();
+
+        // Calendar的月从0-11，所以4月是3.
+        startCalendar.setTime(startDate);
+        // Calendar的月从0-11，所以5月是4.
+        endCalendar.setTime(endDate);
+
+        int count = 1;
+        // 结束日期下滚一天是为了包含最后一天
+        endCalendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        List<Date> list = new ArrayList<Date>();
+        Map<Integer, List<Date>> map = new HashMap<Integer, List<Date>>(16);
+
+        while (startCalendar.before(endCalendar)) {
+            list.add(new Date(startCalendar.getTime().getTime()));
+
+            if (startCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                map.put(count, getMinMaxDate(list));
+                list = new ArrayList<Date>();
+                count++;
+            }
+
+            startCalendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        if (list != null && list.size() > 0) {
+            map.put(count, getMinMaxDate(list));
+        }
+        return map;
+    }
+
+    /**
+     * 获取每一周的最小日期到最大日期
+     * @param list
+     * @return
+     */
+    private static List<Date> getMinMaxDate(List<Date> list) {
+        List<Date> dateList = new ArrayList<Date>();
+        Map<Date, Integer> dateMap = new TreeMap<Date, Integer>();
+
+        for (int i = 0; i < list.size(); i++) {
+            Date dateKey = list.get(i);
+            if (dateMap.containsKey(dateKey)) {
+                int value = dateMap.get(dateKey) + 1;
+                dateMap.put(dateKey, value);
+            } else {
+                dateMap.put(dateKey, 1);
+            }
+        }
+        Set<Date> keySet = dateMap.keySet();
+        Iterator<Date> iter = keySet.iterator();
+        while (iter.hasNext()) {
+            Date key = iter.next();
+            dateList.add(key);
+        }
+        return dateList;
     }
 }

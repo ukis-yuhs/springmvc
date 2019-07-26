@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
-import static com.yuhs.utils.date.DateUtils.getNewDateFormat;
-import static com.yuhs.utils.date.DateUtils.shortFormat;
-import static com.yuhs.utils.date.DateUtils.webFormat;
+import static com.yuhs.utils.date.DateUtils.*;
 
 /**
  * Created by yuhaisheng on 2019/5/21.
@@ -229,5 +229,23 @@ public class DateUtilsTest {
         System.out.println(DateUtils.dateNotLessThan("20190808","20190708",getNewDateFormat(DateUtils.shortFormat)));
     }
 
+
+    /**
+     * 获取指定开始日期到结束日期的周信息
+     */
+    @Test
+    public void testGetWeekDiff() {
+        try {
+            Map<Integer, List<Date>> map =  DateUtils.getWeekDiff(new Date(), DateUtils.parseDateNoTime("20191231",DateUtils.shortFormat));
+            for (Integer key : map.keySet()) {
+                System.out.println("key = " + key);
+                for (Date date : map.get(key)) {
+                    System.out.println("date = " + DateUtils.formatDate(date, DateUtils.webFormat));
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

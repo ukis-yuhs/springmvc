@@ -22,8 +22,9 @@ public class ConvertReadFileUtilsTest {
 
         classloader = org.apache.poi.xssf.usermodel.XSSFWorkbook.class.getClassLoader();
         res = classloader.getResource("org.apache.poi.xssf.usermodel.XSSFWorkbook.class");
-        if(res != null)
+        if(res != null) {
             path = res.getPath();
+        }
         System.out.println("work path is        " + path);
     }
 

@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yuhaisheng on 2019/5/9.
@@ -19,14 +21,15 @@ public class EditFileUtilsTest {
         String inputFilePath = "/Users/yuhaisheng/Desktop/file/2";
         EditFileUtils.deleteFiles(inputFilePath);
     }
+
     /**
      * 根据给出路径自动选择复制文件或整个文件夹
      */
     @Test
-    public void testCopyFiles(){
+    public void testCopyFiles() {
         String inputFilePath = "/Users/yuhaisheng/Desktop/file/1";
         String outputFilePath = "/Users/yuhaisheng/Desktop/file/2";
-        EditFileUtils.copyFiles(inputFilePath,outputFilePath);
+        EditFileUtils.copyFiles(inputFilePath, outputFilePath);
     }
 
     /**
@@ -37,7 +40,7 @@ public class EditFileUtilsTest {
         String inputFilePath = "/Users/yuhaisheng/Desktop/file/test.txt";
         String outputFilePath = "/Users/yuhaisheng/Desktop/file/output.txt";
         InputStream inputStream = ReadFileUtils.readFileToInputStream(inputFilePath);
-        EditFileUtils.writeFileFromInputStream(inputStream,outputFilePath);
+        EditFileUtils.writeFileFromInputStream(inputStream, outputFilePath);
     }
 
     /**
@@ -46,10 +49,11 @@ public class EditFileUtilsTest {
     @Test
     public void testWriteContent() {
         String inputFilePath = "/Users/yuhaisheng/Desktop/file/test.txt";
-        EditFileUtils.writeContent(inputFilePath,"11111111111111");
-        EditFileUtils.writeContent(inputFilePath,"AAAAAAAAAAAAAA");
-        EditFileUtils.writeContent(inputFilePath,"测试测试测试测试测试");
+        EditFileUtils.writeContent(inputFilePath, "11111111111111");
+        EditFileUtils.writeContent(inputFilePath, "AAAAAAAAAAAAAA");
+        EditFileUtils.writeContent(inputFilePath, "测试测试测试测试测试");
     }
+
     /**
      * 创建文件，若文件夹不存在则自动创建文件夹，若文件存在则删除旧文件
      */
@@ -76,7 +80,25 @@ public class EditFileUtilsTest {
     @Test
     public void testGetBytes() {
         String localFilePath = "/Users/yuhaisheng/Documents/sts4/记事本";
-        byte [] contet = ReadFileUtils.getBytes(localFilePath);
+        byte[] contet = ReadFileUtils.getBytes(localFilePath);
         EditFileUtils.createFile(contet, "/Users/yuhaisheng/Documents/sts4/", "test2");
+    }
+
+    /**
+     * 按行写入文件
+     */
+    @Test
+    public void testWriteFile() {
+        String filePath = "/Users/yuhaisheng/Desktop/file/test.txt";
+        File file = new File(filePath);
+        List<String> list = new ArrayList();
+        list.add("第一行文本内容");
+        list.add("第二行文本内容");
+        list.add("第三行文本内容");
+        list.add("第四行文本内容");
+        for (String item : list) {
+            EditFileUtils.writeFile(file, item);
+        }
+
     }
 }

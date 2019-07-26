@@ -1,9 +1,6 @@
 package com.yuhs.utils.file.read;
 
-import com.yuhs.utils.file.edit.EditFileUtils;
 import org.junit.Test;
-
-import java.io.File;
 
 /**
  * 从网络获取文件
@@ -16,10 +13,10 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testReadFileByte1() {
-        String netFilePath = "http://xxxx";
-        byte[] bytes = ReadNetFileUtils.readFileByte(netFilePath);
-        EditFileUtils.createFile(bytes, "/Users/yuhaisheng/Desktop/读书笔记/","test.html");
-        System.err.println(bytes);
+//        String netFilePath = "http://xxxx";
+//        byte[] bytes = ReadNetFileUtils.readFileByte(netFilePath);
+//        EditFileUtils.createFile(bytes, "/Users/yuhaisheng/Desktop/读书笔记/","test.html");
+//        System.err.println(bytes);
     }
 
     /**
@@ -27,9 +24,9 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testReadFileByte2() {
-        String netFilePath = "http://xxxx";
-        byte[] bytes = ReadNetFileUtils.readFileByte(netFilePath);
-        System.err.println(new String(bytes));
+//        String netFilePath = "http://xxxx";
+//        byte[] bytes = ReadNetFileUtils.readFileByte(netFilePath);
+//        System.err.println(new String(bytes));
     }
 
     /**
@@ -37,9 +34,9 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testReadFileString() {
-        String netFilePath = "http://xxxx";
-        String content = ReadNetFileUtils.readFileString(netFilePath);
-        System.err.println(content);
+//        String netFilePath = "http://xxxx";
+//        String content = ReadNetFileUtils.readFileString(netFilePath);
+//        System.err.println(content);
     }
 
     /**
@@ -47,9 +44,9 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testExistHttpPath() {
-        String image ="http://xxxx";
-        Boolean boolen = ReadNetFileUtils.existHttpPath(image);
-        System.err.println(boolen);
+//        String image ="http://xxxx";
+//        Boolean boolen = ReadNetFileUtils.existHttpPath(image);
+//        System.err.println(boolen);
     }
 
     /**
@@ -57,8 +54,8 @@ public class ReadNetReadFileUtilsTest {
      */
     @Test
     public void testFile() {
-        String image ="http://xxxx.txt";//这种通过直接实例化文件的方式，url所指应为具体文件，不需要发起http请求
-        File file = new File(image);
-        System.err.println(file.getName());
+//        String image ="http://xxxx.txt";//这种通过直接实例化文件的方式，url所指应为具体文件，不需要发起http请求
+//        File file = new File(image);
+//        System.err.println(file.getName());
     }
 }

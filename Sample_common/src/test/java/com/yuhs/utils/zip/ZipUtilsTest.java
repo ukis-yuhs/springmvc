@@ -11,8 +11,8 @@ public class ZipUtilsTest {
      */
     @Test
     public void testUnzip() {
-        String zipFilePath = "/Users/yuhaisheng/Desktop/file/";
-        String unzipPath = "/Users/yuhaisheng/Desktop/file/";
-        ZipUtils.unzip(zipFilePath,unzipPath);
+//        String zipFilePath = "/Users/yuhaisheng/Desktop/file/";
+//        String unzipPath = "/Users/yuhaisheng/Desktop/file/";
+//        ZipUtils.unzip(zipFilePath,unzipPath);
     }
 }
