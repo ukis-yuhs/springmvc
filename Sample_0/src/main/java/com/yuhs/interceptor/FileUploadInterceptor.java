@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 文件上传拦截器
  * Created by yuhaisheng on 2019/4/23.
  */
 public class FileUploadInterceptor implements HandlerInterceptor {
@@ -24,6 +25,7 @@ public class FileUploadInterceptor implements HandlerInterceptor {
                 throw new MaxUploadSizeExceededException(maxSize);
             }
         }
+        //true表示拦截器放行
         return true;
     }
 

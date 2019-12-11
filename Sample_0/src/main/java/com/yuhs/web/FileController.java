@@ -114,8 +114,8 @@ public class FileController {
      */
     //@RequestBody JSONObject jsonObj
     @RequestMapping(value = "download", method = RequestMethod.POST)
-    //public ResponseEntity<byte[]> fileDownload(@RequestBody Map<String,String> map, HttpServletRequest request) throws IOException {
-//            String filename = map.get("filename");
+    //public ResponseEntity<byte[]> fileDownload(@RequestBody Map<string,string> map, HttpServletRequest request) throws IOException {
+//            string filename = map.get("filename");
     public ResponseEntity<byte[]> fileDownload(@RequestBody JSONObject jsonpObject, HttpServletRequest request) throws IOException {
         String filename = jsonpObject.getString("filename");
         File file = new File(FILE_UPLOAD_BSAE_PATH + filename);

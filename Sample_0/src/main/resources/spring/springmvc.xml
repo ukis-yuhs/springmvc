@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 配置SpringMVC -->
     <!-- 1.开启SpringMVC注解模式 -->
     <!-- 简化配置：
@@ -31,6 +31,13 @@
                 <property name="maxSize" value="31457280"/><!--30M-->
             </bean>
         </mvc:interceptor>
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;/**拦截所有请求，包括二级以上目录&ndash;&gt;-->
+            <!--<mvc:mapper path="/**"/>-->
+            <!--&lt;!&ndash;不包含user下所有请求&ndash;&gt;-->
+            <!--<mvc:exclude-mapper path="/user/**"/>-->
+            <!--<bean class="com.yuhs.interceptor.LoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
     </mvc:interceptors>
 
     <!-- 3.freemarker配置在前，当请求发现/WEB-INF/ftl/没有当时候，就会去/WEB-INF/jsp/查找 -->
