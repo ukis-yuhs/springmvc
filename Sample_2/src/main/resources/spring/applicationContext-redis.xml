@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd ">
 
+    <!--多个context:property-placeholder时会出现"Could not resolve placeholder"错误，这时需要添加ignore-unresolvable="true"-->
+    <context:property-placeholder location="classpath:./properties/redis.properties" ignore-unresolvable="true"/>
+    <!-- 连接池配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 最大连接数 -->
+        <property name="maxTotal" value="${redis.maxTotal}" />
+        <!-- 最大空闲连接数 -->
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <!-- 每次释放连接的最大数目 -->
+        <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" />
+        <!-- 释放连接的扫描间隔（毫秒） -->
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" />
+        <!-- 连接最小空闲时间，毫秒
+                    表示一个对象至少停留在idle状态的最短时间，然后才能被idle object evitor扫描并驱逐；这一项只有在timeBetweenEvictionRunsMillis大于0时才有意义
+         -->
+        <property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" />
+        <!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 毫秒 -->
+        <property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}" />
+        <!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+        <!-- <property name="maxWaitMillis" value="${redis_maxWaitMillis}" /> -->
+        <!-- 在获取连接的时候检查有效性, 默认false -->
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <!-- 在空闲时检查有效性, 默认false -->
+        <!-- <property name="testWhileIdle" value="${redis.testWhileIdle}" /> -->
+        <!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
+        <!-- <property name="blockWhenExhausted" value="${redis.blockWhenExhausted}" /> -->
+    </bean>
+
+    <!-- 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="close"> -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}" type="int"/>
+        <constructor-arg index="3" value="${redis.expire}" type="int"/>
+        <constructor-arg index="4" value="${redis.pwd}"/>
+    </bean>
+
+    <bean id="redisClient" class="com.yuhs.redis.RedisClient">
+        <constructor-arg name="jedisPool" ref="jedisPool"/>
+        <property name="expire" value="${redis.expire}"/>
+    </bean>
 </beans>

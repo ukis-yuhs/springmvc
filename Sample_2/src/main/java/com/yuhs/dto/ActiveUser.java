@@ -1,6 +1,6 @@
 package com.yuhs.dto;
 
-import com.yuhs.entity.SysPermission;
+import com.yuhs.beans.SysPermission;
 
 import java.io.Serializable;
 import java.util.List;

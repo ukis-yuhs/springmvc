@@ -1,20 +1,19 @@
 package com.yuhs.exception;
 
-import com.alibaba.druid.wall.violation.ErrorCode;
-
 /**
  * Created by yuhaisheng on 2019/4/25.
+ * 自定义异常
  */
 public class CustomException extends Exception {
     private String errorMessage;
-    private ErrorCode errorCode;
+    private String errorCode;
 
     public CustomException(String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
     }
 
-    public CustomException(String errorMessage, ErrorCode errorCode) {
+    public CustomException(String errorMessage, String errorCode) {
         super(errorMessage);
         this.errorMessage = errorMessage;
         this.errorCode = errorCode;
@@ -28,11 +27,11 @@ public class CustomException extends Exception {
         this.errorMessage = errorMessage;
     }
 
-    public ErrorCode getErrorCode() {
+    public String getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(ErrorCode errorCode) {
+    public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }
 }

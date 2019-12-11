@@ -14,13 +14,18 @@ import javax.servlet.http.HttpServletResponse;
  * 所以unauthorizedUrl设置后不起作用，只会在控制台打印异常信息。
  * 下面的处理就是为了处理这种情况
  * Created by yuhaisheng on 2019/4/29.
+ * 全局异常处理器
  */
 public class CustomExceptionResolver implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+        // 没有权限
         if (e instanceof UnauthorizedException) {
             ModelAndView mv = new ModelAndView("403");
             return mv;
+        } else if (e instanceof  CustomException) {
+            //...
         }
+        //...
         return null;
     }
 }

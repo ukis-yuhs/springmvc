@@ -2,8 +2,9 @@ package com.yuhs.dao;
 
 import com.yuhs.beans.SysPermission;
 import com.yuhs.beans.SysPermissionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysPermissionMapper {
     int countByExample(SysPermissionExample example);

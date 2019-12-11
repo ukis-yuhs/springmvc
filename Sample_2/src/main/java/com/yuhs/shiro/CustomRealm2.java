@@ -3,7 +3,7 @@ package com.yuhs.shiro;
 import com.yuhs.beans.SysPermission;
 import com.yuhs.beans.SysUser;
 import com.yuhs.dto.ActiveUser;
-import com.yuhs.service.SysService;
+import com.yuhs.service.SysService2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -25,7 +25,7 @@ import java.util.List;
 public class CustomRealm2 extends AuthorizingRealm {
 
     @Autowired
-    private SysService sysService;
+    private SysService2 sysService2;
 
     /**
      * 设置realm名字
@@ -55,7 +55,7 @@ public class CustomRealm2 extends AuthorizingRealm {
         //2.根据用户输入的usercode从数据库中查询
         SysUser sysUser = null;
         try {
-            sysUser = sysService.findSystUserByUserCode(userCode);
+            sysUser = sysService2.findSystUserByUserCode(userCode);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class CustomRealm2 extends AuthorizingRealm {
         //通过SysService取出菜单
         List<SysPermission> menuList = null;
         try {
-            menuList = sysService.findMenuListByUserId(sysUser.getId());
+            menuList = sysService2.findMenuListByUserId(sysUser.getId());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class CustomRealm2 extends AuthorizingRealm {
         //2.根据身份信息获取权限信息
         List<SysPermission> sysPermissions = null;
         try {
-            sysPermissions = sysService.findPermissionListByUserId(activeUser.getUserid());
+            sysPermissions = sysService2.findPermissionListByUserId(activeUser.getUserid());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

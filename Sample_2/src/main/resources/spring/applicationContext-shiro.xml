@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <description>Shiro Configuration</description>
+    <!-- Shiro Filter -->
+    <!--web.xml中shiro到filter对应到bean-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--此属性必须存在-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--如果不存在默认调用web-inf 文件下的login.ftl-->
+        <property name="loginUrl" value="/user/login" />
+        <!--登录成功跳转路径-->
+        <property name="successUrl" value="/page/index"/>
+        <!--没有权限跳转路径-->
+        <property name="unauthorizedUrl" value="/page/refuse"/>
+        <!--此属性可以省略 这里配置主要可以通过直接提交表单验证，就可以不用subject.login(token)手动调用了-->
+        <property name="filters">
+            <map>
+                <!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中 -->
+                <entry key="authc" value-ref="formAuthenticationFilter" />
+            </map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                <!--这里你可以设置是否需要认证-->
+                /assets/** = anon
+                /page/logout = logout
+                /index.ftl  = anon
+                /page/index = user
+                /** = authc
+            </value>
+        </property>
+    </bean>
+
+    <!--如果上面配置了filter 自定义的属性那么就需要实现一个bean-->
+    <!--自定义form认证过滤器-->
+    <!--基于Form表单的身份验证过滤器，不配置也会注册此过滤器，表单的用户名，密码及loginurl将采用默认值-->
+    <!--自己实现的filter 需要继承其他类FormAuthenticationFilter-->
+    <bean id="formAuthenticationFilter"  class="com.yuhs.shiro.CustomFormAuthenticationFilter">
+        <!--这里的value 需要和登录的表单中的名称保存一直-->
+        <!-- 表单中账号的input名称 -->
+        <property name="usernameParam" value="username" />
+        <!-- 表单中密码的input名称 -->
+        <property name="passwordParam" value="password" />
+        <!-- 记住我input的名称 -->
+        <property name="rememberMeParam" value="rememberMe"/>
+    </bean>
+
+    <!-- shiro安全管理器  设置cacheManage,下列属性有实现CacheManagerAware接口的,都会自动注入缓存管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm" />
+        <!--注入缓存管理器-->
+        <!--<property name="cacheManager" ref="cacheManager" />-->
+
+        <!--redis缓存管理-->
+        <property name="cacheManager" ref="redisCacheManager"/>
+        <property name="sessionManager" ref="sessionManager" />
+    </bean>
+
+    <!-- 項目自定义的Realm -->
+    <bean id="userRealm" class="com.yuhs.shiro.CustomRealm2">
+        <!--<property name="cacheManager" ref="cacheManager" />-->
+        <!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器都要求进行散列 -->
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!--凭证匹配器-->
+    <!--可自定义-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/><!-- 散列方法 -->
+        <property name="hashIterations" value="1"/><!-- 散列次数 -->
+    </bean>
+
+
+    <!--rediro 缓存管理器设定 开始-->
+    <bean id="redisCacheManager" class="org.crazycake.shiro.RedisCacheManager">
+        <property name="keyPrefix" value="shiro_redis_session:"/>
+        <property name="redisManager" ref="redisClient"/>
+    </bean>
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="redisSessionDAO"/>
+        <property name="sessionIdCookie" ref="simpleCookie"/>
+    </bean>
+    <bean id="redisSessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+    <!--<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>-->
+    <bean id="sessionIdGenerator" class="com.yuhs.redis.JavaUuidSessionIdGenerator"/>
+    <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg name="name" value="custom.session"/>
+        <property name="path" value="/"/>
+    </bean>
+    <!--rediro 缓存管理器设定 结束-->
 </beans>

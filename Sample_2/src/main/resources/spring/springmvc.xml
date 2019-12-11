@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    <!-- 开启SpringMVC注解模式 -->
+    <mvc:annotation-driven />
+    <!--静态资源默认servlet配置-->
+    <mvc:default-servlet-handler/>
+    <!--freemarker配置在前，当请求发现/WEB-INF/ftl/没有当时候，就会去/WEB-INF/jsp/查找 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="prefix" value=""/>
+        <!--<property name="suffix" value=".html"/>-->
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+    <!--注册组件扫描器-->
+    <context:component-scan base-package="com.yuhs.controller"/>
+    <!--读入属性文件,因使用场所不同,需要在父容器中读取-->
+    <context:property-placeholder location="classpath:properties/resource.properties" />
+    <!-- 静态资源  -->
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
 
+    <!-- 全局异常处理器 -->
+    <bean class="com.yuhs.exception.CustomExceptionResolver"/>
 </beans>

@@ -3,11 +3,12 @@ package com.yuhs.service.impl;
 import com.yuhs.beans.SysPermission;
 import com.yuhs.beans.SysUser;
 import com.yuhs.beans.SysUserExample;
-import com.yuhs.dbmap.SysPermissionMapperEx;
-import com.yuhs.dbmap.SysUserMapper;
+import com.yuhs.dao.SysPermissionMapperEx;
+import com.yuhs.dao.SysUserMapper;
 import com.yuhs.dto.ActiveUser;
 import com.yuhs.exception.CustomException;
-import com.yuhs.utils.secure.MD5Utils;
+import com.yuhs.service.SysService2;
+import com.yuhs.utils.secure.MD5Utils_2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by yuhaisheng on 2019/4/25.
  */
 @Service
-public class SysService2Impl implements SysService2Impl {
+public class SysService2Impl implements SysService2 {
 
     @Autowired
     private SysUserMapper sysUserMapper;
@@ -44,7 +45,7 @@ public class SysService2Impl implements SysService2Impl {
         String password_db = sysUser.getPassword();
         //对输入对密码和数据库密码进行对比，如果一致，认证通过
         //对页面输入对密码进行md5加密
-        String password_input_md5 = MD5Utils.getMd5Sum(password);
+        String password_input_md5 = MD5Utils_2.getMd5Sum(password);
         if (!password_input_md5.equalsIgnoreCase(password_db)) {
             throw new CustomException("输入密码不正确");
         }
