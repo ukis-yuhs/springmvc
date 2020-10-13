@@ -12,7 +12,7 @@
 
     <!-- 集中定义版本号 -->
     <properties>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <poi.version>4.0.1</poi.version>
