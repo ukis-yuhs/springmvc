@@ -26,7 +26,7 @@
         <jsoup.version>1.10.1</jsoup.version>
         <servlet-api.version>2.5</servlet-api.version>
         <spring-beans.version>4.3.14.RELEASE</spring-beans.version>
-        <commons-compress.version>1.14</commons-compress.version>
+        <commons-compress.version>1.21</commons-compress.version>
         <ganymed-ssh2.version>build210</ganymed-ssh2.version>
         <mail.version>1.4.7</mail.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
