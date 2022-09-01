@@ -23,7 +23,7 @@
         <httpclient.version>4.5.5</httpclient.version>
         <commons-lang.vresion>2.6</commons-lang.vresion>
         <commons-httpclient.version>3.1</commons-httpclient.version>
-        <jsoup.version>1.10.1</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <servlet-api.version>2.5</servlet-api.version>
         <spring-beans.version>4.3.14.RELEASE</spring-beans.version>
         <commons-compress.version>1.14</commons-compress.version>
